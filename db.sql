@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Počítač: db
--- Vytvořeno: Čtv 24. čec 2025, 14:03
+-- Vytvořeno: Čtv 24. čec 2025, 19:58
 -- Verze serveru: 9.2.0
 -- Verze PHP: 8.2.27
 
@@ -82,13 +82,6 @@ CREATE TABLE `badges_questions` (
   `id_user` int NOT NULL,
   `time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_czech_ci;
-
---
--- Vypisuji data pro tabulku `badges_questions`
---
-
-INSERT INTO `badges_questions` (`id`, `id_question`, `id_user`, `time`) VALUES
-(1, 22, 10, '2025-07-24 13:29:42');
 
 -- --------------------------------------------------------
 
@@ -179,7 +172,7 @@ CREATE TABLE `bulk_messages` (
   `time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `attachment_name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_czech_ci DEFAULT NULL,
   `attachment_path` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_czech_ci DEFAULT NULL,
-  `url` varchar(255) COLLATE utf8mb4_czech_ci DEFAULT NULL
+  `url` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_czech_ci DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_czech_ci;
 
 --
@@ -221,9 +214,9 @@ CREATE TABLE `messages` (
   `id_conversation` int NOT NULL,
   `id_sender` int NOT NULL,
   `message` text CHARACTER SET utf8mb4 COLLATE utf8mb4_czech_ci,
-  `attachment_name` varchar(255) COLLATE utf8mb4_czech_ci DEFAULT NULL,
-  `attachment_path` varchar(255) COLLATE utf8mb4_czech_ci DEFAULT NULL,
-  `url` varchar(255) COLLATE utf8mb4_czech_ci DEFAULT NULL,
+  `attachment_name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_czech_ci DEFAULT NULL,
+  `attachment_path` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_czech_ci DEFAULT NULL,
+  `url` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_czech_ci DEFAULT NULL,
   `time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `badge_time` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_czech_ci;
@@ -240,7 +233,7 @@ INSERT INTO `messages` (`id`, `id_conversation`, `id_sender`, `message`, `attach
 (65, 9, 10, 'Potřebovali bychom pomoc na den dětí.', NULL, NULL, NULL, '2025-07-24 10:45:46', NULL),
 (67, 7, 284, 'Dobrý den, děkuji moc, stavím se.', NULL, NULL, NULL, '2025-07-24 11:12:11', NULL),
 (68, 8, 285, 'Ano', NULL, NULL, NULL, '2025-07-24 11:18:15', NULL),
-(69, 9, 286, 'Dobrý den, velmi ráda vám pomohu.', NULL, NULL, NULL, '2025-07-24 11:22:38', '2025-07-24 13:29:42');
+(69, 9, 286, 'Dobrý den, velmi ráda vám pomohu.', NULL, NULL, NULL, '2025-07-24 11:22:38', '2025-07-24 19:43:24');
 
 -- --------------------------------------------------------
 
@@ -252,9 +245,9 @@ CREATE TABLE `photo_gallery` (
   `id` int NOT NULL,
   `id_post` int NOT NULL,
   `path` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_czech_ci NOT NULL,
-  `url` varchar(255) COLLATE utf8mb4_czech_ci NOT NULL,
+  `url` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_czech_ci NOT NULL,
   `thumbnail_path` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_czech_ci NOT NULL,
-  `thumbnail_url` varchar(255) COLLATE utf8mb4_czech_ci NOT NULL,
+  `thumbnail_url` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_czech_ci NOT NULL,
   `thumbnail_width` int NOT NULL,
   `thumbnail_height` int NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_czech_ci;
@@ -286,7 +279,7 @@ CREATE TABLE `posts` (
   `type` varchar(5) CHARACTER SET utf8mb4 COLLATE utf8mb4_czech_ci NOT NULL,
   `name` varchar(30) CHARACTER SET utf8mb4 COLLATE utf8mb4_czech_ci NOT NULL,
   `thumbnail_path` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_czech_ci NOT NULL,
-  `thumbnail_url` varchar(255) COLLATE utf8mb4_czech_ci NOT NULL,
+  `thumbnail_url` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_czech_ci NOT NULL,
   `path` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_czech_ci DEFAULT NULL,
   `url` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_czech_ci DEFAULT NULL,
   `time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
@@ -298,16 +291,16 @@ CREATE TABLE `posts` (
 --
 
 INSERT INTO `posts` (`id`, `id_section`, `type`, `name`, `thumbnail_path`, `thumbnail_url`, `path`, `url`, `time`, `archived`) VALUES
-(77, 59, 'text', 'Lorem Ipsum', '/private/boards/sections/posts/thumbnails/text.png', '/api/dashboard/34/59/77/source', 'C:\\Users\\smajmi00\\Documents\\22-07-2025\\dsd\\14-07-2025\\bp\\bakalarska-prace\\private\\boards\\34\\59\\77\\ec531d66-24fd-4aee-b88f-7f9d8b1d704a.json', '', '2025-07-24 10:07:17', NULL),
+(77, 59, 'text', 'Lorem Ipsum', '/private/boards/sections/posts/thumbnails/text.png', '/api/dashboard/34/59/77/source', '/private/boards/34/59/77/ec531d66-24fd-4aee-b88f-7f9d8b1d704a.json', '', '2025-07-24 10:07:17', NULL),
 (79, 60, 'pdf', 'Příklady', '/private/boards/sections/posts/thumbnails/pdf.jpg', '/api/dashboard/34/60/79/source', '/private/boards/34/60/79/de1ce9b5-a45c-4089-8ae7-cb5a2a822790.pdf', '/api/dashboard/34/60/pdf/79/source', '2025-07-24 10:10:23', NULL),
 (80, 61, 'file', 'Domácí úkol 1', '/private/boards/sections/posts/thumbnails/file.png', '/api/dashboard/34/61/80/source', '/private/boards/34/61/80/f60335dc-42ba-470a-ba92-b475bc389cb8.pdf', '/api/dashboard/34/61/file/80/source', '2025-07-24 10:10:46', NULL),
-(82, 62, 'text', 'Slovíčka', '/private/boards/sections/posts/thumbnails/text.png', '/api/dashboard/35/62/82/source', 'C:\\Users\\smajmi00\\Documents\\22-07-2025\\dsd\\14-07-2025\\bp\\bakalarska-prace\\private\\boards\\35\\62\\82\\48160724-edb5-4c3c-aac1-6b7151c09798.json', '', '2025-07-24 10:11:19', NULL),
+(82, 62, 'text', 'Slovíčka', '/private/boards/sections/posts/thumbnails/text.png', '/api/dashboard/35/62/82/source', '/private/boards/35/62/82/48160724-edb5-4c3c-aac1-6b7151c09798.json', '', '2025-07-24 10:11:19', NULL),
 (83, 64, 'audio', 'Hans Zimmer - Time', '/private/boards/sections/posts/thumbnails/audio.jpg', '/api/dashboard/36/64/83/source', '/private/boards/36/64/83/97bd563e-e4b2-4bd8-93a2-78e912620b85.mp3', '/api/dashboard/36/64/audio/83/source', '2025-07-24 10:12:04', NULL),
 (85, 63, 'photo', 'Kreslení', '/private/boards/36/63/85/thumbnail/fc2aa764-a244-4567-bf3c-a8ee878989c4.jpg', '/api/dashboard/36/63/85/source', NULL, NULL, '2025-07-24 10:15:57', NULL),
 (86, 65, 'photo', 'Praha', '/private/boards/37/65/86/thumbnail/bde47037-643b-484a-a4fb-fa16cefca170.jpg', '/api/dashboard/37/65/86/source', NULL, NULL, '2025-07-24 10:18:00', NULL),
 (90, 68, 'video', 'Z lesa ptáček', '/private/boards/sections/posts/thumbnails/video.webp', '/api/dashboard/38/68/90/source', '/private/boards/38/68/90/2347ca6e-a2e5-42c8-a498-e3f24b22b6ad.mp4', '/api/dashboard/38/68/video/90/source', '2025-07-24 10:32:18', NULL),
-(91, 59, 'text', 'Učebnice 1', '/private/boards/sections/posts/thumbnails/text.png', '/api/dashboard/34/59/91/source', 'C:\\Users\\smajmi00\\Documents\\22-07-2025\\dsd\\14-07-2025\\bp\\bakalarska-prace\\private\\boards\\34\\59\\91\\dc9e1183-b948-4425-9dc2-c7fef044e6be.json', '', '2025-07-24 10:33:03', NULL),
-(92, 59, 'text', 'Učebnice 2', '/private/boards/sections/posts/thumbnails/text.png', '/api/dashboard/34/59/92/source', 'C:\\Users\\smajmi00\\Documents\\22-07-2025\\dsd\\14-07-2025\\bp\\bakalarska-prace\\private\\boards\\34\\59\\92\\3942b45c-1f5b-4a7f-8caf-9cf5618c35f9.json', '', '2025-07-24 10:33:13', NULL);
+(91, 59, 'text', 'Učebnice 1', '/private/boards/sections/posts/thumbnails/text.png', '/api/dashboard/34/59/91/source', '/private/boards/34/59/91/dc9e1183-b948-4425-9dc2-c7fef044e6be.json', '', '2025-07-24 10:33:03', NULL),
+(92, 59, 'text', 'Učebnice 2', '/private/boards/sections/posts/thumbnails/text.png', '/api/dashboard/34/59/92/source', '/private/boards/34/59/92/3942b45c-1f5b-4a7f-8caf-9cf5618c35f9.json', '', '2025-07-24 10:33:13', NULL);
 
 -- --------------------------------------------------------
 
@@ -562,7 +555,7 @@ ALTER TABLE `badges_posts`
 -- AUTO_INCREMENT pro tabulku `badges_questions`
 --
 ALTER TABLE `badges_questions`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT pro tabulku `boards`
@@ -610,7 +603,7 @@ ALTER TABLE `photo_gallery`
 -- AUTO_INCREMENT pro tabulku `posts`
 --
 ALTER TABLE `posts`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=93;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=94;
 
 --
 -- AUTO_INCREMENT pro tabulku `questions`
