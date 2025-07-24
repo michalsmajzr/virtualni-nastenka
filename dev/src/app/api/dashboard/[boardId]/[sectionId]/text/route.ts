@@ -55,8 +55,9 @@ export async function POST(
       await writeFile(filePath, buffer, "utf-8");
 
       const thumbnailUrl = `/api/dashboard/${boardId}/${sectionId}/${result.insertId}/source`;
+      const textPath = `/private/boards/${boardId}/${sectionId}/${result.insertId}/${newNameText}`;
       const updateSql = `UPDATE posts SET thumbnail_url = ?, path = ? WHERE id = ?`;
-      const updateValues = [thumbnailUrl, filePath, result.insertId];
+      const updateValues = [thumbnailUrl, textPath, result.insertId];
       await connection.execute<ResultSetHeader>(updateSql, updateValues);
       await connection.commit();
 

@@ -1,5 +1,6 @@
 import { pool } from "@/lib/db";
 import { RowDataPacket } from "mysql2";
+import path from "path";
 import { readFile, writeFile } from "fs/promises";
 import { auth } from "@/lib/auth";
 
@@ -26,7 +27,8 @@ export async function GET(
 
       const text = texts[0];
       if (text) {
-        const buffer = await readFile(text.path, "utf-8");
+        const filePath = path.join(process.cwd(), text.path);
+        const buffer = await readFile(filePath, "utf-8");
         const textData = {
           name: text.name,
           content: JSON.parse(buffer),
