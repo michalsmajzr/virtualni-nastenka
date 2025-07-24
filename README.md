@@ -67,4 +67,4 @@ heslo: ```ZYBgUPE2w8NzHNfbYK```
 > 
 > Z bezpečnostních důvodů před nasazením smažte složku *init*
 > 
-> Před nasazením do produkční verze je nutné nastavit správné adresy v souboru */dev/.env*, v případě nastavení jiného než výchozího portu pro Next.js */dev/.env.local*
+> Před nasazením do produkční verze je nutné nastavit správné adresy v souboru */dev/.env*, v případě nastavení jiného než výchozího portu pro lokální server nastavte */dev/.env.local*
