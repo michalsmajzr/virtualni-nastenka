@@ -75,8 +75,9 @@ export async function PUT(
       const value = [textId];
       const [texts] = await pool.execute<RowDataPacket[]>(sql, value);
 
-      const filePath = texts[0].path;
-      if (filePath) {
+      const textPath = texts[0].path;
+      if (textPath) {
+        const filePath = path.join(process.cwd(), textPath);
         const buffer = JSON.stringify(text);
         await writeFile(filePath, buffer, "utf-8");
 
