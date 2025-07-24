@@ -63,7 +63,7 @@ heslo: ```ZYBgUPE2w8NzHNfbYK```
 > 
 > Změnit údaje učitele lze v souboru: */dev/src/app/api/init*
 >
-> Následně načtěte ve webového prohlížeči url a údaje se aktualizují: http://localhost:3000/api/init
+> Následně stačí ve webového prohlížeči načíst url a údaje se aktualizují: http://localhost:3000/api/init
 > 
 > Z bezpečnostních důvodů před nasazením smažte složku *init*
 > 
