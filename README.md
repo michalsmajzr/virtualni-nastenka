@@ -1,7 +1,7 @@
 # Virtuální nástěnka pro podporu výuky na 1. stupni základních škol
 
 ## Postup spuštění
-1. Stáhněte repozitář *(dev, db.sql, docker-compose.yml)*
+1. Stáhněte repozitář *(bakalarska-prace, db.sql, docker-compose.yml)*
 2. Stáhněte a nainstalujte docker https://www.docker.com/products/docker-desktop/
 3. V dockeru spusťte terminál a přejděte do aktuálního adresáře, kam jste stáhli *docker-compose.yml*, zadejte příkaz:
 ```
@@ -19,7 +19,7 @@ docker-compose up --build
    
 6. Importujte přiložený soubor *db.sql* (položka v horním menu *Import*, *Choose File*, vlevo dole *Proveď*)
 7. Stáhněte a nainstalujte node.js server https://nodejs.org/en
-8. Spusťe příkazový řádek jako správce a vstupte do staženého adresáře *dev*
+8. Spusťe příkazový řádek jako správce a vstupte do staženého adresáře *bakalarska-prace*
 9. V adresáři spusťe následující příkazy (vývojářskou verzi lze po příkazu ```npm install``` spustit příkazem  ```npm run dev```):
 ```
 npm install
@@ -57,14 +57,14 @@ heslo: ```ZYBgUPE2w8NzHNfbYK```
 </br>
 
 > [!NOTE]
-> Změnit údaje k odesílání e-mailu lze v souboru */dev/src/lib/mailer.ts*
+> Změnit údaje k odesílání e-mailu lze v souboru */bakalarska-prace/src/lib/mailer.ts*
 > 
-> Změnit údaje k připojení databázi lze v souboru: */dev/src/lib/db.ts*
+> Změnit údaje k připojení databázi lze v souboru: */bakalarska-prace/src/lib/db.ts*
 > 
-> Změnit údaje učitele lze v souboru: */dev/src/app/api/init*
+> Změnit údaje učitele lze v souboru: */bakalarska-prace/src/app/api/init*
 >
 > Následně stačí ve webového prohlížeči načíst url a údaje se aktualizují: http://localhost:3000/api/init
 > 
 > Z bezpečnostních důvodů před nasazením smažte složku *init*
 > 
-> Před nasazením do produkční verze je nutné nastavit správné adresy v souboru */dev/.env*, v případě jiného než výchozího portu pro lokální server Next.js */dev/.env.local*
+> Před nasazením do produkční verze je nutné nastavit správné adresy v souboru */bakalarska-prace/.env*, v případě jiného než výchozího portu pro lokální server Next.js */bakalarska-prace/.env.local*
