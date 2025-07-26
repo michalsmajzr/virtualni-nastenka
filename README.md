@@ -61,7 +61,7 @@ heslo: ```ZYBgUPE2w8NzHNfbYK```
 > 
 > Změnit údaje k připojení databázi lze v souboru: */bakalarska-prace/src/lib/db.ts*
 > 
-> Změnit údaje učitele lze v souboru: */bakalarska-prace/src/app/api/init*
+> Změnit údaje učitele lze v souboru: */bakalarska-prace/src/app/api/init/route.ts*
 >
 > Následně stačí ve webového prohlížeči načíst url a údaje se aktualizují: http://localhost:3000/api/init
 > 
