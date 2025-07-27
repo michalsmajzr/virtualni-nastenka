@@ -70,6 +70,8 @@ heslo: ```ZYBgUPE2w8NzHNfbYK```
 > Před nasazením do produkční verze je nutné nastavit správné adresy v souboru */bakalarska-prace/.env*, v případě jiného než výchozího portu pro lokální server Next.js */bakalarska-prace/.env.local*
 >
 
-EER diagram
-generovaný pomocí služby MySQL Workbench.
-<img width="816" height="998" alt="diagram" src="https://github.com/user-attachments/assets/33777a03-838e-4231-a513-3bcdc4ede1d8" />
+## EER diagram
+
+<img width="816" height="998" alt="diagram" src="https://github.com/user-attachments/assets/dd0e2ab0-af01-48b5-87d8-08b15b0759d4" />
+
+*Vygenerovaný pomocí služby MySQL Workbench.*
