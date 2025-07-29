@@ -3,5 +3,3 @@ export interface Answer {
   answer: string;
   votes: string;
 }
-
-export type AnswerAdd = Pick<Answer, "id" | "answer">;
