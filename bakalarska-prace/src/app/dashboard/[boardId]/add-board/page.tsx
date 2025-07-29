@@ -251,7 +251,7 @@ export default function AddBoardPage() {
         onClick={() => router.push("/dashboard")}
         desktopVisible={false}
       />
-      <StepLayout>
+      <StepLayout step={step} maxStep={2}>
         <Dialog isOpen={isOpen} close={() => setIsOpen(false)}>
           <section
             onClick={(e) => e.stopPropagation()}

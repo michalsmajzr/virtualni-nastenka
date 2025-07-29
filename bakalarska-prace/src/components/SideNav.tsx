@@ -91,7 +91,7 @@ export default function SideNav() {
     pathname === `/dashboard/${params.boardId}/${params.sectionId}/add/file` ||
     pathname === `/dashboard/${params.boardId}/${params.sectionId}/add/audio`
   ) {
-    href = `/dashboard/${params.boardId}/${params.sectionId}/add`;
+    href = `/dashboard/${params.boardId}/${params.sectionId}`;
 
     return <ArrowBack src={src} href={href} />;
   } else if (

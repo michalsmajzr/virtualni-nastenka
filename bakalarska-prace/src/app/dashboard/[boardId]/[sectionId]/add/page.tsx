@@ -50,7 +50,7 @@ export default function AddBoard() {
         }
         desktopVisible={false}
       />
-      <StepLayout>
+      <StepLayout step={0} maxStep={2}>
         <section className="flex-1 flex flex-col items-center justify-center overflow-hidden">
           <h2 className="text-display-small mb-6">Vyberte příspěvěk</h2>
           <div className="grid grid-cols-[repeat(auto-fill,minmax(250px,1fr))] items-center gap-6 w-full p-6 bg-surface-container-high rounded-3xl overflow-auto md:w-2/3">

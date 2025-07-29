@@ -87,7 +87,7 @@ export default function AddPDFPage() {
         desktopVisible={false}
       />
 
-      <StepLayout>
+      <StepLayout step={step + 1} maxStep={2}>
         {step === 0 && (
           <>
             <section className="flex-1 flex flex-col justify-center items-center">
@@ -103,7 +103,17 @@ export default function AddPDFPage() {
                 />
               </div>
             </section>
-            <div className="mt-6 w-full flex justify-end">
+            <div className="mt-6 w-full flex justify-between gap-2">
+              <Button
+                text="Zpět"
+                type="button"
+                buttonType="tonal"
+                onClick={() =>
+                  router.push(
+                    `/dashboard/${params.boardId}/${params.sectionId}/add`
+                  )
+                }
+              />
               <Button
                 text="Další"
                 type="button"
