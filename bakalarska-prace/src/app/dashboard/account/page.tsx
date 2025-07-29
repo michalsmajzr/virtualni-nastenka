@@ -31,7 +31,7 @@ export default function Account() {
   const [newPassword, setNewPassword] = useState("");
   const [newConfirmPassword, setNewConfirmPassword] = useState("");
 
-  async function loadData() {
+  async function loadAccount() {
     const res = await fetch("/api/account");
 
     if (res.ok) {
@@ -53,8 +53,8 @@ export default function Account() {
   }
 
   useEffect(() => {
-    loadData();
-  }, []);
+    loadAccount();
+  }, [firstname, surname, phone, profilePhoto]);
 
   useEffect(() => {
     setPreview(null);
@@ -125,7 +125,7 @@ export default function Account() {
       const { profilePhoto } = data;
       if (profilePhoto) {
         setIsOpen(false);
-        loadData();
+        loadAccount();
         setSnackbar("Profilová fotka byla změněna.");
       } else {
         setSnackbar("Fotografie se nenačetla.");
