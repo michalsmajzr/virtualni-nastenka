@@ -11,6 +11,13 @@ const compat = new FlatCompat({
 
 const eslintConfig = [
   ...compat.extends("next/core-web-vitals", "next/typescript"),
+  {
+    rules: {
+      "react-hooks/exhaustive-deps":
+        "off" /* z důvodu hlašení warningu při prázdném dependecy poli v useEffect, 
+      kdy chci komponentu načíst pouze při prvním renderu */,
+    },
+  },
 ];
 
 export default eslintConfig;
