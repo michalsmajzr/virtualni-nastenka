@@ -54,7 +54,7 @@ export default function Account() {
 
   useEffect(() => {
     loadAccount();
-  }, [firstname, surname, phone, profilePhoto]);
+  }, []);
 
   useEffect(() => {
     setPreview(null);
