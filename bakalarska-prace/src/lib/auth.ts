@@ -56,6 +56,7 @@ export const config = {
       },
     }),
   ],
+  secret: process.env.NEXTAUTH_SECRET,
 } satisfies NextAuthOptions;
 
 export function auth(
