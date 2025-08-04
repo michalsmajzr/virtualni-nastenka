@@ -9,9 +9,12 @@ export async function GET() {
       const id = session.user.id;
 
       const boardSql = `
-        SELECT COUNT(p.id) AS badge_count FROM posts AS p
+        SELECT COUNT(p.id) AS badge_count
+        FROM posts AS p
+        JOIN board_sections AS bs ON bs.id = p.id_section
+        JOIN boards AS b ON b.id = bs.id_board
         LEFT JOIN badges_posts AS bp ON bp.id_post = p.id AND bp.id_user = ?
-        WHERE p.archived IS NULL AND bp.time IS NULL`;
+        WHERE p.archived IS NULL AND bs.archived IS NULL AND b.archived IS NULL AND bp.time IS NULL`;
       const boardValue = [id];
       const [board] = await pool.execute<RowDataPacket[]>(boardSql, boardValue);
 
