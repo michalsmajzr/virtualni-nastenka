@@ -28,7 +28,7 @@ npm run start
 8. Na adrese http://localhost:3000/ nyní běží webová aplikace
 
 ## Přihlašovací údaje učitele:
-e-mail: ```teacher@virtualninastenka.com```  
+e-mail: ```teacher@virtualninastenka.online```  
 heslo: ```root```
 
 ## Přihlašovací údaje předem vytvořených rodičů:
