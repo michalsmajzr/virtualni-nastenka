@@ -3,7 +3,7 @@
 ## Postup spuštění
 1. Stáhněte repozitář *(bakalarska-prace, db.sql, docker-compose.yml)*
 2. Stáhněte a nainstalujte docker https://www.docker.com/products/docker-desktop/
-3. V dockeru spusťte terminál a přejděte do aktuálního adresáře, kam jste stáhli *docker-compose.yml*, zadejte příkaz:
+3. V dockeru spusťte terminál a přejděte do aktuálního adresáře, kam jste stáhli *docker-compose.yml* (ujistěte se, že ve stejné složce je i soubor *db.sql*), zadejte příkaz:
 ```
 docker-compose up --build
 ```
