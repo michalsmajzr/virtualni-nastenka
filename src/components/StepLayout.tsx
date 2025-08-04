@@ -14,7 +14,6 @@ export default function StepLayout({
     progress = 0;
   } else {
     progress = (step / maxStep) * 100;
-    console.log(progress, maxStep, step);
   }
 
   return (

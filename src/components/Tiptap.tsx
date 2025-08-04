@@ -34,7 +34,7 @@ export default function Tiptap({ content, onChange, name }: TiptapInterface) {
         class: clsx(
           "prose flex-1 max-w-none p-6 bg-surface-container outline-none rounded-t-3xl lg:p-12",
           {
-            "dark:prose-invert": theme === "dark",
+            "prose-invert": theme === "dark",
           }
         ),
       },

@@ -17,7 +17,7 @@ export function mailer(email: string) {
 
   (async () => {
     await transporter.sendMail({
-      from: '"Virtualni nastenka" <teacher@virtualninastenka.com>',
+      from: '"Virtualni nastenka" <teacher@virtualninastenka.online>',
       to: email,
       subject: "Nastavení hesla",
       text: `Zde si nastavte heslo: ${link}`,

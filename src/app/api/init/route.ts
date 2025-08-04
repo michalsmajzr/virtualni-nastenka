@@ -9,7 +9,7 @@ export async function GET() {
     const firstname = "Virtualní";
     const surname = "Nástěnka";
     const password = "root";
-    const email = "teacher@virtualninastenka.com";
+    const email = "teacher@virtualninastenka.online";
     const phone = "785 125 478";
 
     const salt = bcrypt.genSaltSync();
