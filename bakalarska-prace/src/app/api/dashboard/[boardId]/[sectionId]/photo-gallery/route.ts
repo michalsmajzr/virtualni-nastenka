@@ -33,7 +33,7 @@ export async function POST(
         return Response.json({ error: "nameTooLong" }, { status: 400 });
       }
 
-      if (photos[0] instanceof File && photos[0]?.size > 0) {
+      if (photos[0] instanceof Blob && photos[0]?.size > 0) {
         const type = "photo";
         const postSql = `INSERT INTO posts (id_section, type, name, thumbnail_path, thumbnail_url) VALUES (?, ?, ?, ?, ?)`;
         const postValues = [sectionId, type, name, "", ""];
@@ -80,7 +80,7 @@ export async function POST(
         await mkdir(directoryThumbanailPath);
 
         for (let i = 0; i < photos.length; i++) {
-          if (photos[i] instanceof File && photos[i]?.size > 0) {
+          if (photos[i] instanceof Blob && photos[i]?.size > 0) {
             const ext = path.extname(photos[i].name);
             const newNamePhoto = `${crypto.randomUUID()}${ext}`;
 

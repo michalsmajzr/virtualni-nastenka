@@ -4,6 +4,8 @@ import bcrypt from "bcrypt";
 import { type NextRequest } from "next/server";
 import { mailer } from "@/lib/mailer";
 import { auth } from "@/lib/auth";
+import validator from "validator";
+import parsePhoneNumber from "libphonenumber-js";
 
 export async function GET() {
   try {
@@ -55,6 +57,15 @@ export async function POST(request: Request) {
       }
       if (phone.length > 20) {
         return Response.json({ error: "phoneTooLong" }, { status: 400 });
+      }
+
+      if (!validator.isEmail(email)) {
+        return Response.json({ error: "notValidEmail" }, { status: 400 });
+      }
+
+      const phoneNumber = parsePhoneNumber(phone, "CZ");
+      if (!phoneNumber?.isValid()) {
+        return Response.json({ error: "notValidPhone" }, { status: 400 });
       }
 
       const role = "user";

@@ -64,7 +64,7 @@ export async function POST(
         );
       }
 
-      if (attachment instanceof File && attachment?.size > 0 && message) {
+      if (attachment instanceof Blob && attachment?.size > 0 && message) {
         const ext = path.extname(attachment.name);
         const newNameFile = `${crypto.randomUUID()}${ext}`;
 
@@ -92,7 +92,7 @@ export async function POST(
 
         await connection.commit();
         return Response.json({ id: result.insertId, message: "success" });
-      } else if (attachment instanceof File && attachment?.size > 0) {
+      } else if (attachment instanceof Blob && attachment?.size > 0) {
         const ext = path.extname(attachment.name);
         const newNameFile = `${crypto.randomUUID()}${ext}`;
 

@@ -33,7 +33,7 @@ export async function POST(
         return Response.json({ error: "nameTooLong" }, { status: 400 });
       }
 
-      if (video instanceof File && video?.size > 0) {
+      if (video instanceof Blob && video?.size > 0) {
         const thumbnailPath = `/private/boards/sections/posts/thumbnails/video.webp`;
         const type = "video";
         const sql = `INSERT INTO posts (id_section, type, name, thumbnail_path, thumbnail_url, path, url) VALUES (?, ?, ?, ?, ?, ?, ?)`;

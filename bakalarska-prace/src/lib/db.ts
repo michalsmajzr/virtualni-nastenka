@@ -1,7 +1,7 @@
 import mysql, { Pool } from "mysql2/promise";
 
 /* problém s vytvářením stále nového spojení
-viz https://medium.com/@truongtronghai/globalthis-declare-global-and-the-solution-of-singleton-prisma-client-7706a769c9d3 */
+zdroj: https://medium.com/@truongtronghai/globalthis-declare-global-and-the-solution-of-singleton-prisma-client-7706a769c9d3, https://www.farleythecoder.com/blog/design-patterns/singleton-pattern */
 
 declare global {
   var pool: Pool | undefined;

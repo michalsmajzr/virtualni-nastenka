@@ -2,7 +2,7 @@ import nodemailer from "nodemailer";
 
 export function mailer(email: string) {
   const token = crypto.randomUUID();
-  const link = `${process.env.BASE_URL}reset-password?token=${token}`;
+  const link = `${process.env.NEXTAUTH_URL}reset-password?token=${token}`;
 
   /* https://ethereal.email/create */
   const transporter = nodemailer.createTransport({

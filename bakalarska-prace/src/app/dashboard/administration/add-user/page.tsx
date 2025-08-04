@@ -140,6 +140,10 @@ export default function AddUser() {
         setSnackbar("Email je příliš dlouhý.");
       } else if (error === "phoneTooLong") {
         setSnackbar("Telefonní číslo je příliš dlouhé.");
+      } else if (error === "notValidEmail") {
+        setEmailError("Zadejte platný e-mail.");
+      } else if (error === "notValidPhone") {
+        setPhoneError("Zadejte platné telefonní číslo.");
       } else if (error === "notUniqueEmail") {
         setSnackbar("Tento e-mail už je registrovaný.");
       } else {

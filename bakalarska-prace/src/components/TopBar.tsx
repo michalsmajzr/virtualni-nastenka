@@ -22,6 +22,15 @@ export default function TobBar({
   const params = useParams();
   const pathname = usePathname();
 
+  let searchName;
+  if (pathname === `/dashboard`) {
+    searchName = "nástěnku";
+  } else if (pathname === `/dashboard/${params.boardId}`) {
+    searchName = "sekci";
+  } else {
+    searchName = "příspěvek";
+  }
+
   const [isOpen, setIsOpen] = useState(false);
 
   const [isOpenMobileSearch, setIsOpenMobileSearch] = useState(false);
@@ -60,7 +69,7 @@ export default function TobBar({
           pathname === `/dashboard/${params.boardId}/${params.sectionId}`) && (
           <>
             <Search
-              placeholder="Vyhledejte příspěvek..."
+              placeholder={`Vyhledejte ${searchName}...`}
               isOpen={isOpenMobileSearch}
             />
             {isOpenMobileSearch ? (

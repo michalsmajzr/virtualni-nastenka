@@ -26,7 +26,7 @@ export async function PUT(request: Request) {
       const [rows] = await connection.execute<RowDataPacket[]>(sql, value);
       const user = rows[0];
       if (user) {
-        if (profilePhoto instanceof File && profilePhoto?.size > 0) {
+        if (profilePhoto instanceof Blob && profilePhoto?.size > 0) {
           const ext = path.extname(profilePhoto.name);
           const newNameProfilePhoto = `${crypto.randomUUID()}${ext}`;
 

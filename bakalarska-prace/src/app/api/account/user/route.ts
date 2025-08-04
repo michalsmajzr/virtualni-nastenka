@@ -1,6 +1,7 @@
 import { pool } from "@/lib/db";
 import { RowDataPacket } from "mysql2";
 import { auth } from "@/lib/auth";
+import parsePhoneNumber from "libphonenumber-js";
 
 export async function PUT(request: Request) {
   try {
@@ -28,6 +29,11 @@ export async function PUT(request: Request) {
       }
       if (phone.length > 20) {
         return Response.json({ error: "phoneTooLong" }, { status: 400 });
+      }
+
+      const phoneNumber = parsePhoneNumber(phone, "CZ");
+      if (!phoneNumber?.isValid()) {
+        return Response.json({ error: "notValidPhone" }, { status: 400 });
       }
 
       const sql = `UPDATE users SET firstname = ?, surname = ?, phone = ? WHERE id = ?`;

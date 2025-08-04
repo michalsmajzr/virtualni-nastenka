@@ -33,7 +33,7 @@ export async function POST(
         return Response.json({ error: "nameTooLong" }, { status: 400 });
       }
 
-      if (audio instanceof File && audio?.size > 0) {
+      if (audio instanceof Blob && audio?.size > 0) {
         const thumbnailPath = `/private/boards/sections/posts/thumbnails/audio.jpg`;
         const type = "audio";
         const sql = `INSERT INTO posts (id_section, type, name, thumbnail_path, thumbnail_url, path, url) VALUES (?, ?, ?, ?, ?, ?, ?)`;

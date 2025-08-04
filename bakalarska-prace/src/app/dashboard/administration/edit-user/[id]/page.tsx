@@ -138,6 +138,8 @@ export default function Add() {
         setSnackbar("Příjmení je příliš dlouhé.");
       } else if (error === "phoneTooLong") {
         setSnackbar("Telefonní číslo je příliš dlouhé.");
+      } else if (error === "notValidPhone") {
+        setPhoneError("Zadejte platné telefonní číslo.");
       } else {
         setSnackbar("Chyba serveru! Zkuste to později.");
       }

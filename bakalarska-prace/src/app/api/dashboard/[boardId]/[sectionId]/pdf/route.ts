@@ -33,7 +33,7 @@ export async function POST(
         return Response.json({ error: "nameTooLong" }, { status: 400 });
       }
 
-      if (pdf instanceof File && pdf?.size > 0) {
+      if (pdf instanceof Blob && pdf?.size > 0) {
         const thumbnailPath = `/private/boards/sections/posts/thumbnails/pdf.jpg`;
         const type = "pdf";
         const sql = `INSERT INTO posts (id_section, type, name, thumbnail_path, thumbnail_url, path, url) VALUES (?, ?, ?, ?, ?, ?, ?)`;

@@ -54,7 +54,7 @@ export async function POST(request: Request) {
         return Response.json({ error: "nameTooLong" }, { status: 400 });
       }
 
-      if (attachment instanceof File && attachment?.size > 0) {
+      if (attachment instanceof Blob && attachment?.size > 0) {
         const ext = path.extname(attachment.name);
         const newNameFile = `${crypto.randomUUID()}${ext}`;
 

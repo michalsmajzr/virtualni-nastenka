@@ -8,6 +8,8 @@ services:
       - "3306:3306"
     environment:
       MYSQL_ROOT_PASSWORD: root
+    volumes:
+      - ./db.sql:/docker-entrypoint-initdb.d/db.sql
 
   # administrace databáze
   phpmyadmin:
@@ -20,3 +22,4 @@ services:
       MYSQL_ROOT_PASSWORD: root
     depends_on:
       - db
+    

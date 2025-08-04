@@ -44,7 +44,7 @@ export default function MenuBar({ editor }: { editor: Editor | null }) {
 
   return (
     <div className="flex p-2 max-w-full text-on-surface-variant bg-surface-container overflow-auto rounded-3xl">
-      <div className="flex gap-2 w-fit">
+      <div className="flex items-center gap-2 w-fit">
         <div className="flex gap-1">
           <IconButton
             src="/icons/undo.svg"

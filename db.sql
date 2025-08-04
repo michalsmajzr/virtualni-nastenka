@@ -3,8 +3,8 @@
 -- https://www.phpmyadmin.net/
 --
 -- Počítač: db
--- Vytvořeno: Čtv 24. čec 2025, 19:58
--- Verze serveru: 9.2.0
+-- Vytvořeno: Ned 03. srp 2025, 17:47
+-- Verze serveru: 9.4.0
 -- Verze PHP: 8.2.27
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
@@ -18,10 +18,14 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Databáze: `test`
+-- Databáze: `db`
 --
 
 -- --------------------------------------------------------
+
+CREATE DATABASE db COLLATE utf8mb4_czech_ci;
+
+USE db;
 
 --
 -- Struktura tabulky `answers`
@@ -376,7 +380,7 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `path`, `url`, `firstname`, `surname`, `email`, `password`, `phone`, `role`, `token`) VALUES
-(10, '/private/profile-photo/794f8209-3ee5-417c-b2af-c87d3c71eb97.png', '/api/account/profile-photo/10/source', 'Virtualní', 'Nástěnka', 'teacher@virtualninastenka.com', '$2b$10$u0ZfJReXB53YHojo.kYkSuDip2yirDaqYwJwApGTwMsiJzcZf6QLq', '785 125 478', 'teacher', NULL),
+(10, '/private/profile-photo/794f8209-3ee5-417c-b2af-c87d3c71eb97.png', '/api/account/profile-photo/10/source', 'Virtualní', 'Nástěnka', 'teacher@virtualninastenka.com', '$2b$10$u0ZfJReXB53YHojo.kYkSuDip2yirDaqYwJwApGTwMsiJzcZf6QLq', '+420 785 125 478', 'teacher', NULL),
 (284, '/private/profile-photo/8c7b1aa2-6004-4dee-b37f-d744253210da.png', '/api/account/profile-photo/284/source', 'Petr', 'Novák', 'petr.novak@gmail.com', '$2b$10$hbM7AD3lHkgE1R9YvkxehOP6YWbNQVkgo7GkACd1o338WumAsXnHi', '+420 789 456 123', 'user', NULL),
 (285, '/private/profile-photo/13510478-f4fd-419c-9104-6a658ef9f2fa.png', '/api/account/profile-photo/285/source', 'Jan', 'Novotný', 'novotny@centrum.cz', '$2b$10$9u1MrOlxFKOkXpWk/c4EZeaWtCEFfqCTU.xYWBryi0Nnz/0YlQAFy', '+420 789 654 321', 'user', NULL),
 (286, '/private/profile-photo/abbfed6c-d328-4e57-bbd7-791d993b3cf1.png', '/api/account/profile-photo/286/source', 'Alena', 'Veselá', 'vesela@seznam.cz', '$2b$10$D6GFXwC2tzSQpmjMbeJkPeum1pf6QziLUBUqwd0vyvk0RBO1Y.dJa', '+420 789 456 123', 'user', NULL);

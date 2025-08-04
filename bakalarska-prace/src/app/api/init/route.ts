@@ -1,36 +1,52 @@
 import { pool } from "@/lib/db";
 import { ResultSetHeader, RowDataPacket } from "mysql2";
 import bcrypt from "bcrypt";
+import validator from "validator";
+import parsePhoneNumber from "libphonenumber-js";
 
 export async function GET() {
   try {
-    const role = "teacher";
+    const firstname = "Virtualní";
+    const surname = "Nástěnka";
+    const password = "root";
+    const email = "teacher@virtualninastenka.com";
+    const phone = "785 125 478";
+
     const salt = bcrypt.genSaltSync();
-    const password = bcrypt.hashSync("root", salt);
+    const hash = bcrypt.hashSync(password, salt);
 
     const sql = `SELECT id FROM users WHERE role = "teacher" `;
     const [row] = await pool.query<RowDataPacket[]>(sql);
 
+    if (!validator.isEmail(email)) {
+      return Response.json({ error: "notValidEmail" }, { status: 400 });
+    }
+
+    const phoneNumber = parsePhoneNumber(phone, "CZ");
+    if (!phoneNumber?.isValid()) {
+      return Response.json({ error: "notValidPhone" }, { status: 400 });
+    }
+
     if (row[0]) {
       const updateSql = `UPDATE users SET firstname = ?, surname = ?, phone = ?, email = ?, password = ? WHERE id = ?`;
       const updateValues = [
-        "Virtualní",
-        "Nástěnka",
-        "785 125 478",
-        "teacher@virtualninastenka.com",
-        password,
+        firstname,
+        surname,
+        phoneNumber?.formatInternational(),
+        email,
+        hash,
         row[0].id,
       ];
       await pool.execute<ResultSetHeader>(updateSql, updateValues);
     } else {
       const insertSql = `INSERT INTO users (firstname, surname, phone, email, password, role) VALUES (?, ?, ?, ?, ?, ?)`;
       const insertValues = [
-        "Virtualní",
-        "Nástěnka",
-        "785 125 478",
-        "teacher@virtualninastenka.com",
-        password,
-        role,
+        firstname,
+        surname,
+        phoneNumber?.formatInternational(),
+        email,
+        hash,
+        "teacher",
       ];
       await pool.execute<ResultSetHeader>(insertSql, insertValues);
     }

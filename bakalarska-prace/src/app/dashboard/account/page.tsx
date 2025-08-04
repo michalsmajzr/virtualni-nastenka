@@ -12,6 +12,7 @@ import Image from "next/image";
 import { useContext } from "react";
 import { SnackbarContext } from "@/components/Snackbar";
 import parsePhoneNumber from "libphonenumber-js";
+import { v4 as uuidv4 } from "uuid";
 
 export default function Account() {
   const { setSnackbar } = useContext(SnackbarContext);
@@ -39,7 +40,8 @@ export default function Account() {
       const { firstname, surname, phone, url } = data;
       let uniqueUrl;
       if (url) {
-        uniqueUrl = `${url}?uuid=${crypto.randomUUID()}`; // aby se při zmeně načetl okamžitě nový obrázek
+        uniqueUrl = `${url}?uuid=${uuidv4()}`; /* aby se při zmeně načetl okamžitě nový obrázek, 
+          použita knihovna uuid z důvody podpory starších prohlížečů */
       } else {
         uniqueUrl = null;
       }
@@ -174,7 +176,7 @@ export default function Account() {
     const data = {
       firstname: firstname,
       surname: surname,
-      phone: phone,
+      phone: phoneNumber?.formatInternational(),
     };
 
     const res = await fetch("/api/account/user", {
@@ -184,6 +186,7 @@ export default function Account() {
     });
 
     if (res.ok) {
+      loadAccount();
       setSnackbar("Data byla aktualizována.");
     } else {
       const data = await res.json();
@@ -200,6 +203,8 @@ export default function Account() {
         setSnackbar("Příjmení je příliš dlouhé.");
       } else if (error === "phoneTooLong") {
         setSnackbar("Telefonní číslo je příliš dlouhé.");
+      } else if (error === "notValidPhone") {
+        setPhoneError("Zadejte platné telefonní číslo.");
       } else {
         setSnackbar("Chyba serveru! Zkuste to později.");
       }

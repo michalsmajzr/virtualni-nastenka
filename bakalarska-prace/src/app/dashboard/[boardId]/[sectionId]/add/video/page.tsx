@@ -9,6 +9,8 @@ import TopBar from "@/components/TopBar";
 import StepLayout from "@/components/StepLayout";
 import Button from "@/components/Button";
 import TextField from "@/components/TextField";
+import { ClipLoader } from "react-spinners";
+import { useTheme } from "next-themes";
 
 export default function AddVideoPage() {
   const params = useParams() as { boardId: string; sectionId: string };
@@ -19,18 +21,29 @@ export default function AddVideoPage() {
   const [step, setStep] = useState(0);
   const [name, setName] = useState("");
   const [nameError, setNameError] = useState("");
+  const [loading, setLoading] = useState(false);
+
+  const { theme } = useTheme();
+
+  useEffect(() => {
+    setSnackbar("");
+  }, [step]);
 
   async function handleSubmitVideo(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
 
+    setLoading(true);
+
     if (!name) {
+      setLoading(false);
       return setSnackbar("Chybí název videa!");
     }
 
     const formData = new FormData(e.currentTarget);
 
     const video = formData.get("video");
-    if (video instanceof File && !video.size) {
+    if (video instanceof Blob && !video.size) {
+      setLoading(false);
       return setSnackbar("Nahrajte video!");
     }
 
@@ -45,10 +58,12 @@ export default function AddVideoPage() {
     );
 
     if (res.ok) {
+      setLoading(false);
       router.push(`/dashboard/${params.boardId}/${params.sectionId}`);
       setIsResetSnackbar(false);
       setSnackbar("Video bylo nahráno.");
     } else {
+      setLoading(false);
       const data = await res.json();
       const { error } = data;
       if (error === "missingName") {
@@ -86,7 +101,6 @@ export default function AddVideoPage() {
         }
         desktopVisible={false}
       />
-
       <StepLayout step={step + 1} maxStep={2}>
         {step === 0 && (
           <>
@@ -136,6 +150,16 @@ export default function AddVideoPage() {
             <section className="flex-1 flex flex-col justify-start items-center">
               <h2 className="text-headline-medium mb-6">Nahrajte video</h2>
               <div className="relative flex items-center justify-center w-full h-full bg-surface-container-high rounded-2xl max-w-2xl">
+                {loading && (
+                  <div className="z-100 absolute top-12 left-0 w-full flex items-center justify-center absolute">
+                    <ClipLoader
+                      color={theme === "light" ? "#146683" : "#8ccff0"}
+                      size={100}
+                      aria-label="Loading Spinner"
+                      data-testid="loader"
+                    />
+                  </div>
+                )}
                 <label className="z-20 p-2 bg-surface-container-high rounded-full">
                   <input
                     type="file"

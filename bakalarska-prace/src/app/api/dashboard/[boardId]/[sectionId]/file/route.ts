@@ -33,7 +33,7 @@ export async function POST(
         return Response.json({ error: "nameTooLong" }, { status: 400 });
       }
 
-      if (file instanceof File && file?.size > 0) {
+      if (file instanceof Blob && file?.size > 0) {
         const thumbnailPath = `/private/boards/sections/posts/thumbnails/file.png`;
         const type = "file";
         const sql = `INSERT INTO posts (id_section, type, name, thumbnail_path, thumbnail_url, path, url) VALUES (?, ?, ?, ?, ?, ?, ?)`;

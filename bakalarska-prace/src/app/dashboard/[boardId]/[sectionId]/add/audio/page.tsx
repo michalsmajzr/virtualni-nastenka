@@ -9,6 +9,8 @@ import TopBar from "@/components/TopBar";
 import StepLayout from "@/components/StepLayout";
 import Button from "@/components/Button";
 import TextField from "@/components/TextField";
+import { ClipLoader } from "react-spinners";
+import { useTheme } from "next-themes";
 
 export default function AddAudioPage() {
   const params = useParams() as { boardId: string; sectionId: string };
@@ -20,17 +22,29 @@ export default function AddAudioPage() {
   const [name, setName] = useState("");
   const [nameError, setNameError] = useState("");
 
+  const [loading, setLoading] = useState(false);
+
+  const { theme } = useTheme();
+
+  useEffect(() => {
+    setSnackbar("");
+  }, [step]);
+
   async function handleSubmitAudio(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
 
+    setLoading(true);
+
     if (!name) {
+      setLoading(false);
       return setSnackbar("Chybí název audia!");
     }
 
     const formData = new FormData(e.currentTarget);
 
     const audio = formData.get("audio");
-    if (audio instanceof File && !audio.size) {
+    if (audio instanceof Blob && !audio.size) {
+      setLoading(false);
       return setSnackbar("Nahrajte audio!");
     }
 
@@ -45,10 +59,12 @@ export default function AddAudioPage() {
     );
 
     if (res.ok) {
+      setLoading(false);
       router.push(`/dashboard/${params.boardId}/${params.sectionId}`);
       setIsResetSnackbar(false);
       setSnackbar("Audio bylo nahráno.");
     } else {
+      setLoading(false);
       const data = await res.json();
       const { error } = data;
       if (error === "missingName") {
@@ -136,6 +152,16 @@ export default function AddAudioPage() {
             <section className="flex-1 flex flex-col justify-start items-center">
               <h2 className="text-headline-medium mb-6">Nahrajte audio</h2>
               <div className="relative flex items-center justify-center w-full h-full bg-surface-container-high rounded-2xl max-w-2xl">
+                {loading && (
+                  <div className="z-100 absolute top-12 left-0 w-full flex items-center justify-center absolute">
+                    <ClipLoader
+                      color={theme === "light" ? "#146683" : "#8ccff0"}
+                      size={100}
+                      aria-label="Loading Spinner"
+                      data-testid="loader"
+                    />
+                  </div>
+                )}
                 <label className="z-20 p-2 bg-surface-container-high rounded-full">
                   <input
                     type="file"

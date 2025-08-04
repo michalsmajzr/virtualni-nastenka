@@ -14,6 +14,8 @@ import ImageUploading, {
 } from "react-images-uploading";
 import Lists from "@/components/Lists";
 import IconButton from "@/components/IconButton";
+import { ClipLoader } from "react-spinners";
+import { useTheme } from "next-themes";
 
 /* dle: https://www.npmjs.com/package/react-images-uploading */
 
@@ -27,9 +29,19 @@ export default function AddPhotoPage() {
   const [name, setName] = useState("");
   const [nameError, setNameError] = useState("");
   const [photos, setPhotos] = useState<ImageType[]>([]);
+  const [loading, setLoading] = useState(false);
+
+  const { theme } = useTheme();
+
+  useEffect(() => {
+    setSnackbar("");
+  }, [step]);
 
   async function handleCreatePhotoGallery() {
+    setLoading(true);
+
     if (!name) {
+      setLoading(false);
       return setSnackbar("Chybí název fotografie!");
     }
 
@@ -50,10 +62,12 @@ export default function AddPhotoPage() {
     );
 
     if (res.ok) {
+      setLoading(false);
       router.push(`/dashboard/${params.boardId}/${params.sectionId}`);
       setIsResetSnackbar(false);
-      setSnackbar("Fotografie byla nahrána.");
+      setSnackbar("Fotogalerie byla nahrána.");
     } else {
+      setLoading(false);
       const data = await res.json();
       const { error } = data;
       if (error === "missingName") {
@@ -62,6 +76,8 @@ export default function AddPhotoPage() {
         setSnackbar("Název je příliš dlouhý.");
       } else if (error === "notUniqueName") {
         setSnackbar("Toto jméno bylo již použito.");
+      } else if (error === "notFoundPhoto") {
+        setSnackbar("Nahrajte fotografie.");
       } else {
         setSnackbar("Chyba serveru! Zkuste to později.");
       }
@@ -202,7 +218,17 @@ export default function AddPhotoPage() {
                           onClick={onImageRemoveAll}
                         />
                       </div>
-                      <div className="flex flex-col gap-2 w-full h-full p-6 bg-surface-container-high rounded-3xl overflow-auto">
+                      <div className="relative flex flex-col gap-2 w-full h-full p-6 bg-surface-container-high rounded-3xl overflow-auto">
+                        {loading && (
+                          <div className="z-100 absolute top-12 left-0 w-full flex items-center justify-center absolute">
+                            <ClipLoader
+                              color={theme === "light" ? "#146683" : "#8ccff0"}
+                              size={100}
+                              aria-label="Loading Spinner"
+                              data-testid="loader"
+                            />
+                          </div>
+                        )}
                         {imageList.map((image, index) => (
                           <Lists
                             key={index}

@@ -36,7 +36,7 @@ export async function POST(request: Request) {
         return Response.json({ error: "missingBoardPicture" }, { status: 400 });
       }
 
-      if (boardPicture instanceof File && boardPicture?.size > 0) {
+      if (boardPicture instanceof Blob && boardPicture?.size > 0) {
         const ext = path.extname(boardPicture.name);
         const newNamePicture = `${crypto.randomUUID()}${ext}`;
 

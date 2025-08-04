@@ -503,6 +503,7 @@ export default function Questions() {
                         {attachment}
                         <IconButton
                           src="/icons/close.svg"
+                          type="button"
                           onClick={handleCloseAttachment}
                           size="small"
                         />

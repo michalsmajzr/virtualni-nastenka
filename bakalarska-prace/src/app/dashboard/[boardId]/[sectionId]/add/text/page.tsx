@@ -10,6 +10,8 @@ import Button from "@/components/Button";
 import TextField from "@/components/TextField";
 import Tiptap from "@/components/Tiptap";
 import { JSONContent } from "@tiptap/core";
+import { ClipLoader } from "react-spinners";
+import { useTheme } from "next-themes";
 
 export default function AddTextPage() {
   const params = useParams() as { boardId: string; sectionId: string };
@@ -30,8 +32,18 @@ export default function AddTextPage() {
   });
   const [nameError, setNameError] = useState("");
 
+  const [loading, setLoading] = useState(false);
+
+  const { theme } = useTheme();
+
+  useEffect(() => {
+    setSnackbar("");
+  }, [step]);
+
   async function handleText() {
+    setLoading(true);
     if (!name) {
+      setLoading(false);
       return setSnackbar("Chybí název dokumentu!");
     }
 
@@ -50,10 +62,12 @@ export default function AddTextPage() {
     );
 
     if (res.ok) {
+      setLoading(false);
       router.push(`/dashboard/${params.boardId}/${params.sectionId}`);
       setIsResetSnackbar(false);
       setSnackbar("Dokument byl vytvořen.");
     } else {
+      setLoading(false);
       const data = await res.json();
       const { error } = data;
       if (error === "missingName") {
@@ -138,7 +152,17 @@ export default function AddTextPage() {
         </StepLayout>
       )}
       {step === 1 && (
-        <main className="flex flex-col w-full h-dvh py-6 pt-22 px-6 lg:mx-auto lg:w-4xl lg:h-screen lg:pt-6 lg:px-0">
+        <main className="relative flex flex-col w-full h-dvh py-6 pt-22 px-6 lg:mx-auto lg:w-4xl lg:h-screen lg:pt-6 lg:px-0">
+          {loading && (
+            <div className="z-100 absolute top-32 left-0 w-full flex items-center justify-center absolute">
+              <ClipLoader
+                color={theme === "light" ? "#146683" : "#8ccff0"}
+                size={100}
+                aria-label="Loading Spinner"
+                data-testid="loader"
+              />
+            </div>
+          )}
           <Tiptap content={text} onChange={setText} />
           <div className="flex justify-between px-6 py-3 bg-surface-container rounded-b-3xl">
             <Button

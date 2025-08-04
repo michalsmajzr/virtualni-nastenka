@@ -20,7 +20,7 @@ export default function BulkMessage({
       <div
         onClick={onClick}
         className={clsx(
-          "group relative p-4 flex gap-3 cursor-pointer rounded-xl lg:w-80",
+          "group relative p-4 flex gap-3 cursor-pointer rounded-xl",
           { "bg-surface-container-highest": active }
         )}
       >
