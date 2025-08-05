@@ -13,8 +13,8 @@ docker-compose up --build
    heslo: ```root```
    
 5. Stáhněte a nainstalujte node.js server https://nodejs.org/en
-6. Spusťe příkazový řádek jako správce a vstupte do staženého adresáře *bakalarska-prace*
-7. V adresáři spusťe následující příkazy (vývojářskou verzi lze po příkazu ```npm install``` spustit příkazem  ```npm run dev```):
+6. Spusťte příkazový řádek jako správce a vstupte do staženého adresáře *bakalarska-prace*
+7. V adresáři spusťte následující příkazy (vývojářskou verzi lze po příkazu ```npm install``` spustit příkazem  ```npm run dev```):
 ```
 npm install
 ```
