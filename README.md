@@ -1,7 +1,7 @@
 # Virtuální nástěnka pro podporu výuky na 1. stupni základních škol
 
 ## Demo verze
-Demo verzi naleznete na moji doméně [virtualni-nastenka.michalsmajzr.cz](https://virtualni-nastenka.michalsmajzr.cz/).
+Demo verzi naleznete na moji doméně [virtualni-nastenka.michalsmajzr.cz](https://virtualni-nastenka.michalsmajzr.cz/)
 
 ## Přihlašovací údaje učitele:
 e-mail: ```teacher@virtualninastenka.online```  
