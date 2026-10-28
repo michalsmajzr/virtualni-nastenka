@@ -2,24 +2,48 @@ services:
 
   # MySQL databáze
   db:
-    image: mysql:latest
-    restart: always
+    image: mysql:8.4
+    restart: unless-stopped
     ports:
       - "3306:3306"
     environment:
       MYSQL_ROOT_PASSWORD: root
     volumes:
-      - ./db.sql:/docker-entrypoint-initdb.d/db.sql
+      - ./db.sql:/docker-entrypoint-initdb.d/db.sql:ro
+      - mysql_data:/var/lib/mysql
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost", "-uroot", "-proot"]
+      interval: 5s
+      timeout: 5s
+      retries: 20
+      start_period: 20s
 
   # administrace databáze
   phpmyadmin:
     image: phpmyadmin/phpmyadmin
-    restart: always
+    restart: unless-stopped
     ports:
       - "8081:80"
     environment:
       PMA_HOST: db
       MYSQL_ROOT_PASSWORD: root
     depends_on:
-      - db
-    
+      db:
+        condition: service_healthy
+
+  # Next.js aplikace
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    restart: unless-stopped
+    ports:
+      - "3000:3000"
+    environment:
+      NODE_ENV: production
+    depends_on:
+      db:
+        condition: service_healthy
+
+volumes:
+  mysql_data:

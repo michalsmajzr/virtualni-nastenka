@@ -1,14 +1,23 @@
 import "@/styles/globals.css";
-import { Roboto } from "next/font/google";
+import localFont from "next/font/local";
 import Snackbar from "@/components/Snackbar";
 import { ThemeProvider } from "next-themes";
 import { Suspense } from "react";
 
-const roboto = Roboto({
+const roboto = localFont({
+  src: [
+    {
+      path: "../fonts/Roboto-VariableFont_wdth,wght.ttf",
+      weight: "400 700",
+      style: "normal",
+    },
+    {
+      path: "../fonts/Roboto-Italic-VariableFont_wdth,wght.ttf",
+      weight: "400 700",
+      style: "italic",
+    },
+  ],
   variable: "--font-roboto",
-  weight: ["400", "500", "700"],
-  style: ["normal", "italic"],
-  subsets: ["latin-ext"],
   display: "swap",
 });
 
