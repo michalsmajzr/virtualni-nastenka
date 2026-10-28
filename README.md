@@ -1,31 +1,7 @@
 # Virtuální nástěnka pro podporu výuky na 1. stupni základních škol
 
-## Postup spuštění
-1. Stáhněte repozitář *(bakalarska-prace, db.sql, docker-compose.yml)*
-2. Stáhněte a nainstalujte docker https://www.docker.com/products/docker-desktop/
-3. V dockeru spusťte terminál a přejděte do aktuálního adresáře, kam jste stáhli *docker-compose.yml* (ujistěte se, že ve stejné složce je i soubor *db.sql*), zadejte příkaz:
-```
-docker-compose up --build
-```
-4. Na adrese http://localhost:8081/ nyní běží rozhraní pro správu databáze phpmyadmin, mysql beží na portu 3306 (porty lze upravit před buildem v *docker-compose.yml*), přihlašovací údaje k databázi jsou následující:
-   
-   jméno: ```root```  
-   heslo: ```root```
-   
-5. Stáhněte a nainstalujte node.js server https://nodejs.org/en
-6. Spusťte příkazový řádek jako správce a vstupte do staženého adresáře *bakalarska-prace*
-7. V adresáři spusťte následující příkazy (vývojářskou verzi lze po příkazu ```npm install``` spustit příkazem  ```npm run dev```):
-```
-npm install
-```
-```
-npm run build
-```
-```
-npm run start
-```
-
-8. Na adrese http://localhost:3000/ nyní běží webová aplikace
+## Demo verze
+Demo verzi naleznete na moji doméně ([virtualni-nastenka.michalsmajzr.cz](https://virtualni-nastenka.michalsmajzr.cz/)).
 
 ## Přihlašovací údaje učitele:
 e-mail: ```teacher@virtualninastenka.online```  
@@ -40,6 +16,15 @@ heslo: ```root```
 
 e-mail: ```vesela@seznam.cz```  
 heslo: ```root```
+
+## Postup lokálního spuštění
+1. Stáhněte repozitář *(bakalarska-prace, db.sql, docker-compose.yml, Dockerfile)*
+2. Stáhněte a nainstalujte docker https://www.docker.com/products/docker-desktop/
+3. V dockeru spusťte terminál a přejděte do aktuálního adresáře, kam jste stáhli *docker-compose.yml* (ujistěte se, že ve stejné složce je i soubor *db.sql*), zadejte příkaz:
+```
+docker-compose up --build -d
+```
+4. Na adrese http://localhost:3000/ nyní běží webová aplikace
 
 ## Odesílání e-mailu
 Pro testování odesílání e-mailů při přidávání rodičů jsem zvolil službu Ethereal [https://ethereal.email/](https://ethereal.email/login)
